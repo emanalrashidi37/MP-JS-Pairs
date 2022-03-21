@@ -1,21 +1,21 @@
 /**************************************************************
  * pairs(names):
  *
- * - It accepts an array of names:
+ * 1- It accepts an array of names:
  *       pairs(['Asis', 'Hamsa', 'Fawas', 'Mishmish'])
  *
- * - It returns a randomized pairing of names:
+ * 2- It returns a randomized pairing of names:
  *       [['Mishmish', 'Asis'], ['Fawas', 'Hamsa']]
  *
- * - It can handle an odd number of names:
+ *3 - It can handle an odd number of names:
  *       pairs(['Asis', 'Hamsa', 'Fawas', 'Mishmish', 'Hussein'])
  *       returns [['Mishmish', 'Fawas'], ['Asis', 'Hussein'], ['Hamsa']]
  *
- * - It returns an empty array if it gets passed an empty array:
+ * 4- It returns an empty array if it gets passed an empty array:
  *       pairs([]) returns []
  *
- * - It returns an empty array if it gets passed nothing:
- *       pairs() returns []
+ * 5- It returns an empty array if it gets passed nothing:
+ *       pairs() returns []                     ((DONE))
  ****************************************************************/
 
 /**********************************************
@@ -37,11 +37,57 @@ Array.prototype.getRandom = function () {
 };
 
 function pairs(names) {
-  // Your code goes here
+  let emptyarr = [];
+
+  if (names === undefined) {
+    return emptyarr;
+  } else if (names.length === 0) {
+    return emptyarr;
+  }
+  let len = names.length;
+
+  if (len % 2 === 0) {
+    while (names.length !== 0) {
+      let smallarray = [];
+      while (smallarray.length < 2) {
+        let random = names.getRandom();
+        smallarray.push(random);
+      }
+      emptyarr.push(smallarray);
+    }
+    return emptyarr;
+  } else {
+    while (names.length !== 0) {
+      let smallarray = [];
+      if (names.length === 1) {
+        let smallarray = names;
+        emptyarr.push(smallarray);
+        return emptyarr;
+      } else {
+        while (smallarray.length < 2) {
+          let random = names.getRandom();
+          smallarray.push(random);
+        }
+      }
+
+      emptyarr.push(smallarray);
+    }
+  }
 }
 
 module.exports = pairs;
 
+console.log(
+  typeof pairs([
+    "Asis",
+    "Hamsa",
+    "Fawas",
+    "Mishmish",
+    "Hussein",
+    "Lailz",
+    "Mr Potato",
+  ])
+);
 console.log(
   pairs(["Asis", "Hamsa", "Fawas", "Mishmish", "Hussein", "Lailz", "Mr Potato"])
 );
